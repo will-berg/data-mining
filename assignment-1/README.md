@@ -15,7 +15,10 @@ To test and evaluate your implementation's scalability (the execution time versu
 
 
 ## Running the Program
-The requested functionality outlined in the assignment is implemented as functions in the `functions.py` file.
+The requested functionality outlined in the assignment is implemented as functions in the `functions.py` file. Before running the program, you need to fetch the documents. This is done by running the provided shell script `get_docs.sh`, which will create a directory called `text_files` and place all of the documents in there.
+```sh
+$ /.get_docs.sh
+```
 To test the implementation, run the `main.py` file, adhering to the following usage:
 ```
 $ python main.py [lsh|jaccard|minhash] [verbose|no-verbose] [THRESHOLD]
