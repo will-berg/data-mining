@@ -11,4 +11,16 @@ The stages should be implemented as a collection of classes, modules, functions,
 
 To test and evaluate your implementation's scalability (the execution time versus the size of the input dataset), write a program that uses your classes to find similar documents in a corpus of 5-10 documents. Choose a similarity threshold s (e.g., 0,8) that states that two documents are similar if the Jaccard similarity of their shingle sets is at least s.
 
-# Running the Program
+## Implementation
+
+
+## Running the Program
+The requested functionality outlined in the assignment is implemented as functions in the `functions.py` file.
+To test the implementation, run the `main.py` file, adhering to the following usage:
+```
+$ python main.py [lsh|jaccard|minhash] [verbose|no-verbose] [THRESHOLD]
+```
+You specify what mode you would like to use (lsh, jaccard, or minhash; i.e. how you would like to compute the similarities) in the second command line argument. In the third argument you specify whether or not you want a more verbose print out when running the program. In the fourth argument you specify the support threshold to use. NB: the support threshold must be between 0 and 1. There are no default values for the command line arguments, so you need to explicitly specify values for all arguments when running the program. A valid example run could thus look like this:
+```shell
+$ python main.py lsh no-verbose 0.2
+```

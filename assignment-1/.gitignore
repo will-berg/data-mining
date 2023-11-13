@@ -1,1 +1,4 @@
-/documents
+/text_files
+shingling_test.txt
+*.npy
+/__pycache__
