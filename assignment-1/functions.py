@@ -28,19 +28,23 @@ def compare_sets(S, T):
 
 # Builds a minHash signature (integer vector) of length "n" from a set of hashed shingles "S"
 def minhashing(S, n=100):
-	# Hash function parameters
-	c = sympy.nextprime(2**32-1)
-	a, b = np.linspace(1, c, n), np.linspace(1, c, n)
+	hash_funcs = generate_hash_functions(n)
 
 	signature = np.full(n, np.inf)
-	# Represents each set by the n values of h_min(S) for the n hash functions
-	for i in range(n):
-		for shingle in S:
+	# Represents set "S" by the n values of h_min(S) for the n hash functions
+	for shingle in S:
+		for i in range(n):
 			# Hash function from slides
-			hash_value = (a[i] * shingle + b[i]) % c
+			hash_value = hash_funcs[i](shingle)
 			signature[i] = np.minimum(signature[i], hash_value)
 
 	return signature
+
+# Generate n different hash functions for minhashing
+def generate_hash_functions(n=100):
+	c = sympy.nextprime(2**32-1)
+	a, b = np.linspace(1, c, n), np.linspace(1, c, n)
+	return [lambda x, a=a[i], b=b[i], c=c: (a * x + b) % c for i in range(n)]
 
 
 # Estimates the similarity of two integer vectors (minhash signatures) "v" and "w"
@@ -76,3 +80,11 @@ def lsh(signatures, t):
 		if compare_signatures(signatures[pair[0]], signatures[pair[1]]) >= t:
 			res.append(pair)
 	return res
+
+if __name__ == "__main__":
+	# Test shingling and minhash
+	S = shingling("aliceinwonderland.txt", 10)
+	T = shingling("dracula.txt", 10)
+
+	print("Jaccard similarity of aliceinwonderland and dracula:", compare_sets(S, T))
+	print("Minhash similarity of aliceinwonderland and dracula:", compare_signatures(minhashing(S), minhashing(T)))
