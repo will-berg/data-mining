@@ -11,3 +11,6 @@ You are to solve the first sub-problem: to implement the A-Priori algorithm for 
 
 ## Optional Task
 Solve the second sub-problem, i.e., develop and implement an algorithm for generating association rules between frequent itemsets discovered using the A-Priori algorithm in a dataset of sales transactions. The rules must have the support of at least $s$ and confidence of at least $c$, where $s$ and $c$ are given as input parameters.
+
+# Report
+Write a report (in PDF) with a short description of your solution, instructions on how to build and run, command-line parameters, if any (including default values), and results, e.g., plots or screenshots. For results, your report should include results from running with the specific inputs of the assignment (if specified in the instructions; otherwise, results from running sample inputs should be included). The report should also include info on how long it took your implementation to compute each set of the results.
