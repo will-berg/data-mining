@@ -36,14 +36,14 @@ def print_results(verbose, s, c, frequent_itemsets, association_rules=None):
 if __name__ == "__main__":
 	# Parameters
 	transactions = load_data("data/transactions.dat")
-	verbose = False
+	verbose = True
 	# A typical s is 1% of the baskets
 	s = round(0.01 * len(transactions))
 	c = 0.5
 
 	# A priori algorithm to find frequent itemsets
 	start = time.time()
-	frequent_itemsets, frequent_items_support = a_priori_algorithm(s, transactions)
+	frequent_itemsets = a_priori_algorithm(s, transactions)
 	end = time.time()
 	print(f"Found frequent itemsets in: {round(end-start, 2)} seconds")
 
@@ -53,6 +53,9 @@ if __name__ == "__main__":
 	# end = time.time()
 	# print(f"Generated association rules in: {round(end-start, 2)} seconds")
 	# print()
+
+	# Get only the frequent item sets for the results, don't include the support values
+	frequent_itemsets = list(map(lambda x: list(x.keys()), frequent_itemsets))
 
 	# Print the results
 	print_results(verbose, s, c, frequent_itemsets)

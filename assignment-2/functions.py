@@ -5,8 +5,7 @@ from itertools import combinations
 # A-Priori algorithm for finding frequent itemsets with support at least s in a dataset of sales transactions.
 # The support of an itemset is the number of transactions containing the itemset.
 def a_priori_algorithm(s, transactions):
-	res_items = []
-	res_support = []
+	res = []
 	# First pass
 	# item_counts stores all unique items in the data along with their counts
 	candidate_singletons = defaultdict(int)
@@ -17,9 +16,7 @@ def a_priori_algorithm(s, transactions):
 	# Determine which items are frequent as singletons
 	frequent_items = filter_candidates(candidate_singletons, s)
 	# frequent_items now contains all frequent singletons along with their counts
-	frequent_singletons = [item for item in frequent_items.keys()]
-	res_items.append(frequent_singletons)
-	res_support.append(frequent_items)
+	res.append(frequent_items)
 
 	# k pass
 	k = 1
@@ -29,11 +26,9 @@ def a_priori_algorithm(s, transactions):
 		if len(frequent_ks) == 0:
 			break
 		else:
-			frequent_ks_items = [item for item in frequent_ks.keys()]
-			res_items.append(frequent_ks_items)
-			res_support.append(frequent_ks)
+			res.append(frequent_ks)
 
-	return res_items, res_support
+	return res
 
 # Find frequent itemsets of length k from existing frequent itemsets
 def apriori_pass(transactions, frequent_items, k, s):
