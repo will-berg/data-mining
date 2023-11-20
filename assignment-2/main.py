@@ -15,6 +15,7 @@ def print_results(apriori_time, generation_time, verbose, s, c, frequent_itemset
 
 	print(f"Results with a support of {s} and a confidence of {c}:")
 	print()
+
 	print("Frequent itemsets:")
 	print(f"Found frequent itemsets in: {apriori_time} seconds")
 	print()
@@ -27,6 +28,7 @@ def print_results(apriori_time, generation_time, verbose, s, c, frequent_itemset
 			print()
 	print(f"Total number of frequent itemsets found: {itemsets_total}")
 	print()
+
 	print("Association rules:")
 	print(f"Generated association rules in: {generation_time} seconds")
 	print()
@@ -34,7 +36,6 @@ def print_results(apriori_time, generation_time, verbose, s, c, frequent_itemset
 		antecedent, consequent, confidence = rule[0], rule[1], rule[2]
 		print(f"{antecedent} → {consequent} (confidence: {confidence})")
 	print()
-
 	print(f"Total number of association rules found: {len(association_rules)}")
 
 
@@ -43,7 +44,7 @@ if __name__ == "__main__":
 	# Parameters
 	transactions = load_data("data/transactions.dat")
 	verbose = True
-	# A typical s is 1% of the baskets
+	# A typical s is 1% of the baskets, i.e. an item is frequent if it appears in > 1% of the baskets
 	s = round(0.01 * len(transactions))
 	c = 0.5
 

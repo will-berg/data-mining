@@ -13,11 +13,11 @@ These functions address the first sub-problem. For sub-problem 2, there is one f
 These functions are called to execute the program itself in the `main.py` file, which is responsible for handling the data and running the functions explained above together to produce a result. Relevant results are displayed for viewing by the `print_results` function.
 
 ## Running the Program
-As stated earlier the primary code is written in the `functions.py` file. These functions are then imported in the `main.py` file, which runs the program itself:
+As stated earlier, the primary code is written in the `functions.py` file. These functions are then imported in the `main.py` file, which runs the program itself:
 ```bash
 $ python main.py
 ```
-Keep in mind that before running the program the data needs to be available at the path `data/transactions.dat`. The dataset can be retrieved [here](https://canvas.kth.se/courses/42990/files/6945385). By default, the support threshold is set to 1000 (1% of the baskets) and confidence is set to 0.5. Verbose is also set to `True`, which means that the resulting print out of the program will be more verbose (prints all itemsets found) than if it were set to `False` (only prints how many were found). These values can be adjusted in the `main.py` file.
+Keep in mind that before running the program the data needs to be available at the path `data/transactions.dat`. The dataset can be retrieved [here](https://canvas.kth.se/courses/42990/files/6945385). By default, the support threshold is set to 1000 (1% of the baskets) and confidence is set to 0.5. Verbose is also set to `True`, which means that the resulting printout of the program will be more verbose (prints all itemsets found) than if it were set to `False` (only prints how many were found). These values can be adjusted in the `main.py` file.
 
 ## Results
 With regard to execution time, sub-problem 1 (the apriori algorithm) consistently takes about 10 seconds to execute; generating association rules, meanwhile, finishes basically instantly (usually takes around $1e-5$ seconds).

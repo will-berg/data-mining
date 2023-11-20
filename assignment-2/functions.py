@@ -4,7 +4,6 @@ from itertools import combinations
 # Subproblem 1
 
 # A-Priori algorithm for finding frequent itemsets with support at least s in a dataset of sales transactions.
-# The support of an itemset is the number of transactions containing the itemset.
 def a_priori_algorithm(s, transactions):
 	# list of dictionaries (key for each frequent itemset of length k, value for the corresponding support)
 	res = []
@@ -22,7 +21,7 @@ def a_priori_algorithm(s, transactions):
 	k = 2
 	while True:
 		frequent_ks = apriori_pass(transactions, frequent_items, k, s)
-		# If no frequent itemsets of length k were found, we are done
+		# If no frequent itemsets of length k were found, monotonicity tells us we are done
 		if len(frequent_ks) == 0:
 			break
 		else:
