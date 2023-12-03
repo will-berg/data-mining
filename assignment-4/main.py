@@ -54,6 +54,7 @@ def eigen_X(L):
     X = eigenvectors[:, -k:]
     return eigenvalues, eigenvectors, X, k
 
+# Plot results
 def plots(A, eigenvalues, predictions, fiedler):
     # Plot the eigenvalues
     plt.figure()
@@ -67,7 +68,7 @@ def plots(A, eigenvalues, predictions, fiedler):
     plt.plot(fiedler)
     plt.show()
 
-    # Plot the adjacency matrix
+    # Plot the sparsity pattern
     plt.figure()
     plt.title("Sparsity Pattern")
     plt.spy(A)
@@ -101,6 +102,7 @@ def spectral_clustering(edges, n, weighted):
     plots(A, eigenvalues, predictions, np.sort(fiedler))
 
 
+# Run the algorithm, choose the graph to run it on
 if __name__ == "__main__":
     graph = "example2"
 
