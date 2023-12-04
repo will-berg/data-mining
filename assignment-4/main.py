@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 import networkx as nx
+import time
 
 # Extract the edges from the file and get the number of nodes
 def handle_file(filename):
@@ -60,18 +61,21 @@ def plots(A, eigenvalues, predictions, fiedler):
     plt.figure()
     plt.title("Eigenvalues")
     plt.plot(eigenvalues)
+    # plt.savefig("plots/example2/eigenvalues.png")
     plt.show()
 
     # Plot the sorted fiedler vector
     plt.figure()
     plt.title("Sorted Fiedler Vector")
     plt.plot(fiedler)
+    # plt.savefig("plots/example2/fiedler.png")
     plt.show()
 
     # Plot the sparsity pattern
     plt.figure()
     plt.title("Sparsity Pattern")
     plt.spy(A)
+    # plt.savefig("plots/example2/sparsity.png")
     plt.show()
 
     # Plot the clusters
@@ -79,11 +83,13 @@ def plots(A, eigenvalues, predictions, fiedler):
     plt.figure()
     plt.title("Clusters")
     nx.draw(G, node_color=predictions)
+    # plt.savefig("plots/example2/clusters.png")
     plt.show()
 
 
 # The algorithm
 def spectral_clustering(edges, n, weighted):
+    start = time.time()
     # Steps 1-3
     A = get_matrix(edges, n, weighted)
     L = laplacian(A)
@@ -98,6 +104,9 @@ def spectral_clustering(edges, n, weighted):
     # Step 5, cluster the rows of Y using k-means
     kmeans = KMeans(k, n_init="auto")
     predictions = kmeans.fit(Y).labels_
+
+    end = time.time()
+    print("Time taken: ", end - start)
 
     plots(A, eigenvalues, predictions, np.sort(fiedler))
 
